@@ -1,0 +1,31 @@
+{
+  "name": "friendfinder",
+  "version": "1.0.0",
+  "description": "compatibility-based \"FriendFinder\" application -- basically a dating app. This full-stack site will take in results your users' surveys, then compare their answers with those from other users. The app will then display the name and picture of the user with the best overall match.",
+  "main": "server.js",
+  "scripts": {
+    "test": "boo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tictac0723/FriendFinder.git"
+  },
+  "keywords": [
+    "Friend",
+    "Finder",
+    "dating",
+    "app"
+  ],
+  "author": "Taylor Clark",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tictac0723/FriendFinder/issues"
+  },
+  "homepage": "https://github.com/Tictac0723/FriendFinder#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mysql": "^2.14.0",
+    "path": "^0.12.7"
+  }
+}
