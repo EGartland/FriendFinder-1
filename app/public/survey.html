@@ -3,31 +3,38 @@
 
 <head>
     <meta charset="UTF-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <title>Friend Finder</title>
+    <style type="text/css">
+    #title {
+        text-align: center;
+        font-family: "Roboto", sans-serif;
+    }
+
+    #about {
+        text-align: center;
+        font-family: "Roboto", sans-serif;
+    }
+    </style>
 </head>
 
 <body>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Survey Questions</h1>
-                <hr>
-                <h2><strong>About You!</strong></h2>
+                <h1 id="title">Survey Questions</h1>
+                <h2 id="about"><strong>About You!</strong></h2>
                 <hr>
                 <div id="info">
                     <div class="input-group">
                         <h3>Name: (Required)</h3>
-                        <input type="text" class="form-control" placeholder="User's Name" aria-describedby="basic-addon2" style="width: 100%">
+                        <input id="nameInput" type="text" class="form-control" placeholder="User's Name" aria-describedby="basic-addon2" style="width: 27%">
                     </div>
                     <div class="input-group">
                         <h3>Link to Photo Image: (Required)</h3>
-                        <input type="text" class="form-control" placeholder="Your Image" aria-describedby="basic-addon2" style="width: 100%">
+                        <input id="photoInput" type="text" class="form-control" placeholder="Your Image" aria-describedby="basic-addon2" style="width: 27%">
                     </div>
                 </div>
                 <div id="surveyQuestions">
@@ -100,7 +107,6 @@
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5 (Strongly Agree)</option>
-                        <option value="5">5 (Strongly Agree)</option>
                     </select>​
                     <h2>Question 8</h2>
                     <p>You rarely get carried away by fantasies and ideas.</p>
@@ -110,7 +116,6 @@
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
-                        <option value="5">5 (Strongly Agree)</option>
                         <option value="5">5 (Strongly Agree)</option>
                     </select>​
                     <h2>Question 9</h2>
@@ -134,16 +139,16 @@
                         <option value="5">5 (Strongly Agree)</option>
                     </select>​
                     <br>
-                    <div id="submit" style="width: 100%;, margin-top: 15px;">
+                    <div id="submitButton" style="width: 100%;, margin-top: 15px;">
                         <div class="btn-group" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default"><i class="fa fa-check-circle"></i>Submit</button>
+                            <button id="submit" type="button" class="btn btn-default"><i class="fa fa-check-circle"></i>Submit</button>
                         </div>
                     </div>
                     <div>
-                        <p id="links"><a href="">API Friends List</a> |
+                        <p id="links"><a href="/api/friends">API Friends List</a> |
                             <a href="https://github.com/tictac0723/Friend-Finder">GitHub Repo</a></p>
                     </div>
-                    <div id="resultsModal" class="modal fade" role="dialog">
+                    <div data-toggle="modal" id="resultsModal" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -152,7 +157,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <h2 id="matchName"></h2>
-                                    <img id="matchImg" src="https://i.ytimg.com/vi/PXh47Z_iYlU/maxresdefault.jpg" alt="">
+                                    <img id="matchImg" src="" alt="">
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -164,38 +169,47 @@
             </div>
 </body>
 <script type="text/javascript">
-$("#submit").on("click", function() {
-    function validateForm() {
+$("#submitButton").on("click", function(e) {
+    e.preventDefault();
+
+    function validate() {
         var isValid = true;
-        $('.form-control').each(function() {
-            if ($(this).val() === '')
+        $(".form-control").each(function() {
+            if ($(this).val() === "") {
                 isValid = false;
-        });
-        $('.chosen-select').each(function() {
-            if ($(this).val() === "")
-                isValid = false
+            }
         })
-        console.log('1');
+        console.log("1");
         return isValid;
     }
-    if (validateForm() == true) {
-        var userData = {
-            name: $("#name").val(),
-            photo: $("#photo").val(),
-            scores: [$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val(), ]
-        }
+
+    if (validate() === true) {
+        var data = {};
+        data.name = $("#nameInput").val().trim();
+        data.photo = $("#photoInput").val().trim();
+        data.scores = [$("#q1").val().trim(), $("#q2").val().trim(), $("#q3").val().trim(), $("#q4").val().trim(), $("#q5").val().trim(), $("#q6").val().trim(), $("#q7").val().trim(), $("#q8").val().trim(), $("#q9").val().trim(), $("#q10").val().trim()];
+        console.log(data);
         var currentURL = window.location.origin;
-        $.post(currentURL + "/api/friends", userData, function(data) {
-            $("#matchName").text(data.name);
-            $('#matchImg').attr("src", data.photo);
-            console.log('2');
-            $("#resultsModal").modal('toggle');
+
+        $.post(currentURL + "/api/friends", data, function(data) {
+            $("#matchName").html(data.name);
+            $("#matchImg").attr("src", data.photo);
+            console.log("2");
+            $("#resultsModal").modal("toggle");
         });
     } else {
-        alert("Please fill out all fields before submitting!");
+        alert("Please fill out all of the fields before submitting!!")
     }
     return false;
 });
+
+$.get("/api/friends", function(data) {
+    $("#matchName").html(data.name);
+    $("#matchImg").attr("src", data.photo);
+    console.log("2");
+    $("#resultsModal").modal("toggle");
+
+})
 </script>
 
 </html>
