@@ -27,162 +27,180 @@
         font-family: "Roboto", sans-serif;
     }
 
-    * {
-        box-sizing: border-box
-    }
-    /* Slideshow container */
-
-    .slideshow-container {
-        max-width: 400px;
-        position: relative;
-        margin: auto;
-    }
-
-    .mySlides {
-        display: none;
-    }
-    /* Next & previous buttons */
-
-    .prev,
-    .next {
-        cursor: pointer;
-        position: absolute;
-        top: 50%;
-        width: auto;
-        margin-top: -22px;
-        padding: 16px;
-        color: white;
-        font-weight: bold;
-        font-size: 18px;
-        transition: 0.6s ease;
-        border-radius: 0 3px 3px 0;
-    }
-    /* Position the "next button" to the right */
-
-    .next {
-        right: 0;
-        border-radius: 3px 0 0 3px;
-    }
-    /* On hover, add a black background color with a little bit see-through */
-
-    .prev:hover,
-    .next:hover {
-        background-color: rgba(0, 0, 0, 0.8);
-    }
-    /* Caption text */
-
-    .text {
-        color: #f2f2f2;
-        font-size: 15px;
-        padding: 8px 12px;
-        position: absolute;
-        bottom: 8px;
+    .accordion {
         width: 100%;
-        text-align: center;
-    }
-    /* Number text (1/3 etc) */
-
-    .numbertext {
-        color: #f2f2f2;
-        font-size: 12px;
-        padding: 8px 12px;
-        position: absolute;
-        top: 0;
-    }
-    /* The dots/bullets/indicators */
-
-    .dot {
-        cursor: pointer;
-        height: 13px;
-        width: 13px;
-        margin: 0 2px;
-        background-color: #bbb;
-        border-radius: 50%;
-        display: inline-block;
-        transition: background-color 0.6s ease;
+        max-width: 1080px;
+        height: 250px;
+        overflow: hidden;
+        margin: 50px auto;
     }
 
-    .active,
-    .dot:hover {
-        background-color: #717171;
-    }
-    /* Fading animation */
-
-    .fade {
-        -webkit-animation-name: fade;
-        -webkit-animation-duration: 1.5s;
-        animation-name: fade;
-        animation-duration: 1.5s;
+    .accordion ul {
+        width: 100%;
+        display: table;
+        table-layout: fixed;
+        margin: 0;
+        padding: 0;
     }
 
-    @-webkit-keyframes fade {
-        from {
-            opacity: .4
+    .accordion ul li {
+        display: table-cell;
+        vertical-align: bottom;
+        position: relative;
+        width: 16.666%;
+        height: 250px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        transition: all 500ms ease;
+    }
+
+    .accordion ul li div {
+        display: block;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .accordion ul li div a {
+        display: block;
+        height: 250px;
+        width: 100%;
+        position: relative;
+        z-index: 3;
+        vertical-align: bottom;
+        padding: 15px 20px;
+        box-sizing: border-box;
+        color: #fff;
+        text-decoration: none;
+        font-family: Open Sans, sans-serif;
+        transition: all 200ms ease;
+    }
+
+    .accordion ul li div a * {
+        opacity: 0;
+        margin: 0;
+        width: 100%;
+        text-overflow: ellipsis;
+        position: relative;
+        z-index: 5;
+        white-space: nowrap;
+        overflow: hidden;
+        -webkit-transform: translateX(-20px);
+        transform: translateX(-20px);
+        -webkit-transition: all 400ms ease;
+        transition: all 400ms ease;
+    }
+
+    .accordion ul li div a h2 {
+        font-family: Montserrat, sans-serif;
+        text-overflow: clip;
+        font-size: 24px;
+        text-transform: uppercase;
+        margin-bottom: 2px;
+        top: 160px;
+    }
+
+    .accordion ul li div a p {
+        top: 160px;
+        font-size: 13.5px;
+    }
+
+    .accordion ul li:nth-child(1) {
+        background-size: cover;
+        background-image: url("image1.jpg");
+    }
+
+    .accordion ul li:nth-child(2) {
+        background-image: url(image2.jpg);
+        background-size: cover;
+    }
+
+    .accordion ul li:nth-child(3) {
+        background-image: url(image3.jpg);
+        background-size: cover;
+    }
+
+    .accordion ul li:nth-child(4) {
+        background-image: url(image4.jpg);
+        background-size: cover;
+    }
+
+    .accordion ul li:nth-child(5) {
+        background-image: url(image5.jpg);
+        background-size: cover;
+    }
+
+    .accordion ul li:nth-child(6) {
+        background-image: url(image6.jpg);
+        background-size: cover;
+    }
+
+    .accordion ul:hover li {
+        width: 8%;
+    }
+
+    .accordion ul:hover li:hover {
+        width: 60%;
+    }
+
+    .accordion ul:hover li:hover a {
+        background: rgba(0, 0, 0, 0.4);
+    }
+
+    .accordion ul:hover li:hover a * {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+
+    @media screen and (max-width: 600px) {
+
+        .accordion {
+            height: auto;
         }
-        to {
-            opacity: 1
-        }
-    }
 
-    @keyframes fade {
-        from {
-            opacity: .4
-        }
-        to {
-            opacity: 1
+        .accordion ul li,
+        .accordion ul li:hover,
+        .accordion ul:hover li,
+        .accordion ul:hover li:hover {
+            position: relative;
+            display: table;
+            table-layout: fixed;
+            width: 100%;
+            -webkit-transition: none;
+            transition: none;
         }
     }
     </style>
 </head>
 
 <body>
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-        <!-- Wrapper for slides -->
-        <div class="slideshow-container">
-            <div class="mySlides fade">
-                <div class="numbertext">1 / 3</div>
-                <img src="./image1.jpg" style="width:100%">
-                <div class="text">Taylor</div>
-            </div>
-            <div class="mySlides fade">
-                <div class="numbertext">2 / 3</div>
-                <img src="./image2.jpg" style="width:100%">
-                <div class="text">Lauren</div>
-            </div>
-            <div class="mySlides fade">
-                <div class="numbertext">3 / 4</div>
-                <img src="./image3.jpg" style="width:100%">
-                <div class="text">Ian</div>
-            </div>
-            <div class="mySlides fade">
-                <div class="numbertext">4 / 4</div>
-                <img src="./image4.jpg" style="width:100%">
-                <div class="text">David</div>
-            </div>
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-        </div>
-        <br>
-        <div style="text-align:center">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-        </div>
-        <!-- Left and right controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-    <span class="sr-only">Next</span>
-  </a>
+    <div class="accordion">
+        <ul>
+            <li>
+                <div> <a href="#">
+          </a> </div>
+            </li>
+            <li>
+                <div> <a href="#">
+          </a> </div>
+            </li>
+            <li>
+                <div> <a href="#">
+          </a> </div>
+            </li>
+            <li>
+                <div> <a href="#">
+          </a> </div>
+            </li>
+            <li>
+                <div> <a href="#">
+          </a> </div>
+            </li>
+            <li>
+                <div> <a href="#">
+          </a> </div>
+            </li>
+        </ul>
     </div>
     <div class="jumbotron">
         <h1><i class="fa fa-facebook"></i> Friend Finder</h1>
@@ -190,23 +208,6 @@
             <br> Then find the friend with the greatest compatibility!</p>
         <p><a class="btn btn-primary btn-lg" href="/survey" role="button">Go to Survey</a></p>
     </div>
-    
-    <script>
-    var slideIndex = 0;
-    showSlides();
-
-    function showSlides() {
-        var i;
-        var slides = document.getElementsByClassName("mySlides");
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        slideIndex++;
-        if (slideIndex > slides.length) { slideIndex = 1 }
-        slides[slideIndex - 1].style.display = "block";
-        setTimeout(showSlides, 2000); // Change image every 2 seconds
-    };
-    </script>
 </body>
 
 </html>
