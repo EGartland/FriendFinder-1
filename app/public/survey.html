@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery.js"></script>
@@ -24,10 +24,9 @@
     #submitButton {
         padding-top: 15px;
         padding-bottom: 15px;
-
     }
 
-    #inputs {
+    .inputs {
         width: 100%;
     }
     </style>
@@ -43,11 +42,11 @@
                 <div id="info">
                     <div class="input-group">
                         <h3>Name: (Required)</h3>
-                        <input id="inputs" type="text" class="form-control" placeholder="User's Name" aria-describedby="basic-addon2">
+                        <input id="nameInput" type="text" class="form-control inputs" placeholder="User's Name" aria-describedby="basic-addon2">
                     </div>
                     <div class="input-group">
                         <h3>Link to Photo Image: (Required)</h3>
-                        <input id="inputs" type="text" class="form-control" placeholder="Your Image" aria-describedby="basic-addon2">
+                        <input id="photoInput" type="text" class="form-control inputs" placeholder="Your Image" aria-describedby="basic-addon2">
                     </div>
                 </div>
                 <div id="surveyQuestions">
@@ -180,6 +179,8 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 </body>
 <script type="text/javascript">
 $("#submitButton").on("click", function(e) {
