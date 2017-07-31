@@ -1,6 +1,6 @@
 var users = [{
     name: "Taylor",
-    photo: "https://giphy.com/gifs/4ZswIRaLo7i5q",
+    photo: "https://media.giphy.com/media/k61nOBRRBMxva/giphy.gif",
     scores: [1,
         1,
         2,
